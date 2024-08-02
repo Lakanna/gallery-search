@@ -53,6 +53,7 @@ function handlerSearch(evn) {
   evn.target.reset();
 }
 
+console.log('hello');
 // const promis = new Promise((resolve, reject) => {
 //   if (1 > 2) {
 //     resolve('On resolve');

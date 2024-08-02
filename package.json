@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/js-hw-11/",
+    "build": "vite build --base=/gallery-search/",
     "preview": "vite preview"
   },
   "devDependencies": {
