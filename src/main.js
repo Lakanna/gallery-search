@@ -15,7 +15,7 @@ const elements = {
 
 elements.searchForm.addEventListener('submit', handlerSearch);
 
-function handlerSearch(evn) {
+async function handlerSearch(evn) {
   evn.preventDefault();
 
   let searchedImg = evn.currentTarget.elements.searchImg.value.trim();
@@ -42,11 +42,18 @@ function handlerSearch(evn) {
           position: 'topCenter',
         });
       }
-      elements.imageList.innerHTML = createMarkup(hits);
+      elements.imageList.insertAdjacentHTML('beforeend', createMarkup(hits));
       let gallery = new SimpleLightbox('.image-list a');
       gallery.refresh();
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      iziToast.show({
+        message: 'Sorry, sometings going wrong. Please try again!',
+        color: 'red',
+        position: 'topCenter',
+      });
+      console.log(error);
+    });
 
   elements.loader.hidden = true;
 
