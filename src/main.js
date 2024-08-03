@@ -13,14 +13,23 @@ const elements = {
   loader: document.querySelector('.loader'),
 };
 
+const params = {
+  q: "",
+  page: 1,
+  perPage: 15,
+  maxPage: 1
+}
+
 elements.searchForm.addEventListener('submit', handlerSearch);
 
 function handlerSearch(evn) {
   evn.preventDefault();
+  elements.imageList.innerHTML = '';
+  
+  params.q = evn.currentTarget.elements.searchImg.value.trim();
 
-  let searchedImg = evn.currentTarget.elements.searchImg.value.trim();
 
-  if (searchedImg === '') {
+  if (params.q === '') {
     iziToast.show({
       message: 'Please, input what are you searching!',
       color: 'red',
@@ -32,7 +41,7 @@ function handlerSearch(evn) {
   elements.loader.hidden = false;
   console.dir(elements.loader);
 
-  fetchImg(searchedImg)
+  fetchImg(params.q, params.page)
     .then(({ hits }) => {
       if (hits.length === 0) {
         iziToast.show({
@@ -42,6 +51,7 @@ function handlerSearch(evn) {
           position: 'topCenter',
         });
       }
+      
       elements.imageList.insertAdjacentHTML('beforeend', createMarkup(hits));
       let gallery = new SimpleLightbox('.image-list a');
       gallery.refresh();
