@@ -15,7 +15,7 @@ const elements = {
 
 elements.searchForm.addEventListener('submit', handlerSearch);
 
-async function handlerSearch(evn) {
+function handlerSearch(evn) {
   evn.preventDefault();
 
   let searchedImg = evn.currentTarget.elements.searchImg.value.trim();
@@ -28,7 +28,7 @@ async function handlerSearch(evn) {
     });
     return;
   }
-
+  console.dir(elements.loader);
   elements.loader.hidden = false;
   console.dir(elements.loader);
 
@@ -53,11 +53,11 @@ async function handlerSearch(evn) {
         position: 'topCenter',
       });
       console.log(error);
+    })
+    .finally(() => {
+      elements.loader.hidden = true;
+      evn.target.reset();
     });
-
-  elements.loader.hidden = true;
-
-  evn.target.reset();
 }
 
 console.log('hello');
