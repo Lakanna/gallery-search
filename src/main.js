@@ -13,7 +13,10 @@ const elements = {
   loader: document.querySelector('.loader'),
   // btnLoadMore: document.querySelector('.js-btn-load-more'),
   guadr: document.querySelector('.js-guard'),
+  btnToTop: document.getElementById('back - to - up'),
 };
+
+console.log(elements.btnToTop);
 /*
 створити обʼєкт параметрів вказавши всі параметри, які ми будемо передавати під час запиту
 
@@ -221,6 +224,29 @@ function handleLoadMore(entries, observer) {
         });
     }
   });
+}
+// elements.btnToTop.addEventListener('click', scrollToTop);
+// if (!elements.btnToTop.classList.contains('d-none')) {
+
+// }
+
+window.onscroll = () => {
+  toggleTopButton();
+};
+
+function scrollToTop() {
+  window.scrollBy({
+    top: heightOfElment * 2,
+    behavior: 'smooth',
+  });
+}
+
+function toggleTopButton() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById('back-to-up').classList.remove('d-none');
+  } else {
+    document.getElementById('back-to-up').classList.add('d-none');
+  }
 }
 
 // const promis = new Promise((resolve, reject) => {

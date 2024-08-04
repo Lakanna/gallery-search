@@ -15,8 +15,16 @@ async function fetchImg(searchedImg = '', page = 1, per_page = 20) {
   });
 
   // let url = `${API}?${params}`;
-  const response = await axios.get(API, { params });
-  return response.data;
+  // const response = await axios.get(API, { params });
+  // return response.data;
+
+  return fetch(`${API}?${params}`).then(resp => {
+    if (!resp.ok) {
+      throw new Error(resp.statusText);
+    }
+    // console.log(resp.json());
+    return resp.json();
+  });
 }
 
 export { fetchImg };

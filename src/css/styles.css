@@ -147,3 +147,22 @@
     box-shadow: 0 2.5em 0 0;
   }
 }
+
+/**
+  |============================
+  | arrow top
+  |============================
+*/
+
+.btn {
+  position: fixed;
+  bottom: 0;
+  right: 60px;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.btn.d-none {
+  display: none;
+}
