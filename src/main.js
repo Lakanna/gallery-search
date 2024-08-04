@@ -244,6 +244,9 @@ function scrollToTop() {
 function toggleTopButton() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     document.getElementById('back-to-up').classList.remove('d-none');
+    document
+      .getElementById('back-to-up')
+      .addEventListener('click', scrollToTop);
   } else {
     document.getElementById('back-to-up').classList.add('d-none');
   }
